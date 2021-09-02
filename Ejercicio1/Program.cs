@@ -7,47 +7,77 @@ namespace Ejercicio1
     {
         static void Main(string[] args)
         {
-            Car car = new Car();
-            Motorbike motorbike = new Motorbike();
-            Truck truck = new Truck();
+            Car car = new Car(4, "Electrico");
+            Car car2 = new Car(4, "Gasolina");
+            Motorbike motorbike = new Motorbike(2, "Gasolina");
+            Truck truck = new Truck(8, "Diesel");
 
             List<IVehiclable> vehicles = new List<IVehiclable>();
             vehicles.Add(car);
+            vehicles.Add(car2);
             vehicles.Add(motorbike);
             vehicles.Add(truck);
 
             foreach (var vehicle in vehicles)
             {
-                Console.WriteLine(vehicle.Fabricar());
+                Console.WriteLine(vehicle.Fabricate());
             }
         }
 
         interface IVehiclable
         {
-            string Fabricar();
+            string Fabricate();
+            public int Wheels { set; get; }
+            public string Fuel { set; get; }
         }
 
         class Car : IVehiclable
         {
-            public string Fabricar()
+            public int Wheels { get; set; }
+            public string Fuel { get; set; }
+
+            public string Fabricate()
             {
-                return "Coche fabricado";
+                return "Coche fabricado Ruedas: " + Wheels + " Combustible: " + Fuel;
+            }
+
+            public Car(int wheels, string fuel)
+            {
+                Wheels = wheels;
+                Fuel = fuel;
             }
         }
 
         class Motorbike : IVehiclable
         {
-            public string Fabricar()
+            public int Wheels { get; set; }
+            public string Fuel { get; set; }
+
+            public string Fabricate()
             {
-                return "Moto fabricada";
+                return "Moto fabricada Ruedas: " + Wheels + " Combustible: " + Fuel;
+            }
+            public Motorbike(int wheels, string fuel)
+            {
+                Wheels = wheels;
+                Fuel = fuel;
             }
         }
 
         class Truck : IVehiclable
         {
-            public string Fabricar()
+            public int Wheels { get; set; }
+            public string Fuel { get; set; }
+
+            public string Fabricate()
             {
-                return "Camión fabricado";
+                return "Camión fabricado Ruedas: " + Wheels + " Combustible: " + Fuel;
+            }
+
+            public Truck(int wheels, string fuel)
+            {
+                Wheels = wheels;
+                Fuel = fuel;
             }
         }
     }
